@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Shemu Payroll System</title>
+
+<style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Header */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            display: inline-block;
+        }
+
+        /* Navigation */
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Content */
+        .container {
+            padding: 20px;
+            min-height: 70vh;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Shemu</h1>
+
+        <!-- Navigation Bar -->
+        <nav>
+            <a href="{% url 'employees' %}">Employees Page</a>
+            <a href="{% url 'payslips' %}">Payslips Page</a>
+        </nav>
+    </header>
+
+    <!-- Content Block -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Shemu Payroll System</p>
+    </footer>
+
+</body>
+
+
+
+</html>
