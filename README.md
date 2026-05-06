@@ -15,7 +15,7 @@ General Reminders/Notes:
 - make sure the columns have a maximum decimal display (ex.: overtime can sometimes display like 7 decimal places, limit to 1 or 2)
 
 Login specs:
---- The final project web app should have a login page
------ When no one is logged in, all urls should go to the login page
------ When an admin is logged in, all features are available as normal
------ When an employee is logged in, only two pages are available:  (1) Payslips page, but only the payslips of that employee (2) View Payslip page
+- The final project web app should have a login page
+- When no one is logged in, all urls should go to the login page
+- When an admin is logged in, all features are available as normal
+- When an employee is logged in, only two pages are available:  (1) Payslips page, but only the payslips of that employee (2) View Payslip page
