@@ -8,6 +8,7 @@ Current progress:
 6. Update employee page - done*
 7. Payslips page - Partially done; frontend mostly added(add table data), need to add functionality for payslip creation
 8. View payslips page - NOT DONE X
+*debugging needed
 
 Login specs:
 - The final project web app should have a login page
