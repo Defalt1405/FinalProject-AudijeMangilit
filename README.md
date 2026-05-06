@@ -20,3 +20,4 @@ Login specs:
 Notes:
 - Debugging is still generally not done, especially when it comes to all the forms. Make sure all forms have a maximum input length, negative number error handling and anything else to reduce debugging during defense
 - Make sure the columns have a maximum decimal display (ex.: overtime can sometimes display like 7 decimal places, limit to 1 or 2), so it looks better
+- Most of the views and urls will need to be edited slightly for when login functionality is created(might also need to create an admin model?)
