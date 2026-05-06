@@ -1,0 +1,99 @@
+{% extends 'payroll_app/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <!-- payroll header -->
+    <h2 class="mb-4">Payroll Creation</h2>
+
+    <!-- payroll form -->
+    <div class="card p-4 shadow mb-4">
+        <form method="POST" action="{% url 'payslips' %}">{% csrf_token %}
+
+            <!-- payroll form -->
+            <div class="mb-3">
+                <label class="form-label">Payroll For</label>
+                <select class="form-select" name="payroll_for">
+                    <option value="all">All Employees</option>
+                    <!-- dynamic employee ids -->
+                    {% for e in emp %}
+                        <option value="{{ e.id }}">{{ e.id_number }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- month, year, cycle -->
+            <div class="row mb-3">
+                
+                <!-- month -->
+                <div class="col-md-4">
+                    <label class="form-label">Month</label>
+                    <select class="form-select" name="month">
+                        <option>January</option>
+                        <option>February</option>
+                        <option>March</option>
+                        <option>April</option>
+                        <option>May</option>
+                        <option>June</option>
+                        <option>July</option>
+                        <option>August</option>
+                        <option>September</option>
+                        <option>October</option>
+                        <option>November</option>
+                        <option>December</option>
+                    </select>
+                </div>
+
+                <!-- year -->
+                <div class="col-md-4">
+                    <label class="form-label">Year</label>
+                    <input type="text" class="form-control" name="year" placeholder="e.g. 2026">
+                </div>
+
+                <!-- cycle -->
+                <div class="col-md-4">
+                    <label class="form-label">Cycle</label>
+                    <select class="form-select" name="cycle">
+                        <option value="1">Cycle 1</option>
+                        <option value="2">Cycle 2</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- submit -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- divider -->
+    <hr class="my-4">
+
+    <!-- payslips summary header -->
+    <h2 class="mb-3">Payslips Summary</h2>
+
+    <!-- table -->
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th class="table-dark">ID Number</th>
+                <th class="table-dark">Date</th>
+                <th class="table-dark">Cycle</th>
+                <th class="table-dark">Total Pay</th>
+                <th class="table-dark">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- DATA GOES HERE -->
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

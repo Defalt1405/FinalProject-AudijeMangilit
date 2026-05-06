@@ -75,3 +75,7 @@ def delete_employee(request, pk):
     employee = get_object_or_404(Employee, pk=pk)
     employee.delete()
     return redirect('employees')
+
+def payslips(request):
+    employee_objects = Employee.objects.all()
+    return render(request, 'payroll_app/payslips.html', {'emp':employee_objects})
