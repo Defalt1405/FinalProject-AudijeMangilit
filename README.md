@@ -10,7 +10,7 @@ Current progress:
 8. View payslips page - not done X
 
 General Reminders/Notes:
-- Debugging is still generally not done, especially when it comes to all the forms. Make sure all forms have a maximum input length/negative number error handling
+- Debugging is still generally not done, especially when it comes to all the forms. Make sure all forms have a maximum input length, negative number error handling and anything else to reduce debugging during defense
 - The footer looks weird, too much vertical height, make sure to fix
 - make sure the columns have a maximum decimal display (ex.: overtime can sometimes display like 7 decimal places, limit to 1 or 2)
 
