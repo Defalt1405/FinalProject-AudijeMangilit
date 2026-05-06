@@ -1,0 +1,36 @@
+{% extends 'payroll_app/base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Employees</h2>
+    <button class="btn btn-success">+ Add Employee</button>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="table-dark" scope="col"> Name </th>
+            <th class="table-dark" scope="col"> ID Number </th>
+            <th class="table-dark" scope="col"> Rate </th>
+            <th class="table-dark" scope="col"> Allowance </th>
+            <th class="table-dark" scope="col"> Overtime </th>
+            <th class="table-dark" scope="col"> Options </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in emp %}
+        <tr>
+            <td>{{ e.name }}</td>
+            <td>{{ e.id_number }}</td>
+            <td>{{ e.rate }}</td>
+            <td>{{ e.allowance }}</td>
+            <td>{{ e.overtime_pay }}</td>
+            <td>options</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
