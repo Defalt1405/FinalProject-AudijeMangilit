@@ -7,7 +7,7 @@ Current progress:
 5. Create employee page - done*  
 6. Update employee page - done*
 7. Payslips page - done*
-8. View payslips page - page created, data displayable; layout incomplete
+8. View payslips page - page created, data displays; layout incomplete
 
 *debugging needed
 
@@ -28,3 +28,4 @@ Notes from Hyde:
 - finally got payslips.html to work, but no views/functionality/template for view_payslips yet (May 8, 10:02pm)
 - payslips template (and its associated urls.py and views.py functionality) completed! view_payslip and data added as well. formatting is missing, though. (May 8, 10:49pm)
 - view_payslip works except when trying to display the total deductions for absolutely no reason. can't figure it out (May 9, 12:29am)
+- functionality for payslips.html and view_payslip.html completed, but not debugged yet. (May 9, 12:43am) 
