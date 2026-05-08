@@ -143,11 +143,12 @@ def payslips(request): # Hyde added "Payslip Creation Functionality"
 def view_payslip(request, pk): # created by Hyde
     curpayslip = get_object_or_404(Payslip, pk=pk)
 
-    grosspay = curpayslip.getRate() + curpayslip.getEarnings_allowance() + curpayslip.getOvertime()
+    if True:
+        grosspay = curpayslip.getRate() + curpayslip.getEarnings_allowance() + curpayslip.getOvertime()
     
-    if curpayslip.getPay_cycle() == "1":
+    if curpayslip.getPay_cycle() == 1:
         totaldeduct = curpayslip.getDeductions_tax() + curpayslip.getPag_ibig()
-    elif curpayslip.getPay_cycle() == "2":
+    elif curpayslip.getPay_cycle() == 2:
         totaldeduct = curpayslip.getDeductions_tax() + curpayslip.getDeductions_health() + curpayslip.getSSS()
 
     return render(request, "payroll_app/view_payslip.html", {"p":curpayslip, "grosspay":grosspay, "totaldeduct":totaldeduct})
