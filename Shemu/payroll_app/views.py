@@ -78,27 +78,33 @@ def delete_employee(request, pk):
 
 def payslips(request): # Hyde added "Payslip Creation Functionality" (end 8:29pm)
     employee_objects = Employee.objects.all()
+    message = None
     payslipobjects = Payslip.objects.all()
 
     if request.method == "POST":
 
         emplocheck = request.POST.get("payroll_for")
-        if emplocheck == "All Employees":
+        if emplocheck == "all":
             message = "Can only create payslips per employee. Select an ID number and try again."
         else:
             # information from POST method
-            employeeguy = emplocheck
+            employeeguy = Employee.objects.get(pk=emplocheck)
             month = request.POST.get("month")
             year = request.POST.get("year")
             cycle = request.POST.get("cycle")
 
+            # information from Employee object
+            curemplo_rate = employeeguy.getRate()
+            curemplo_allow = employeeguy.getAllowance()
+            curemplo_ot = employeeguy.getOvertime()
+            
             # other
             pagibig = 100
-            philhealth = employeeguy.getRate * 0.04
-            sss = employeeguy.getRate * 0.045
+            philhealth = curemplo_rate * 0.04
+            sss = curemplo_rate * 0.045
 
             # cycle calculation
-            priorcycle = (employeeguy.getRate/2) + employeeguy.getAllowance + employeeguy.getOvertime
+            priorcycle = (curemplo_rate/2) + curemplo_allow + curemplo_ot
             if cycle == "1":
                 taxcalc1 = (priorcycle - pagibig)
             elif cycle == "2":
@@ -113,14 +119,14 @@ def payslips(request): # Hyde added "Payslip Creation Functionality" (end 8:29pm
                 date_range = "temp. value",
                 year = year,
                 pay_cycle = cycle,
-                rate = employeeguy.getRate,
-                earnings_allowance = employeeguy.getAllowance,
+                rate = curemplo_rate,
+                earnings_allowance = curemplo_allow,
                 deductions_tax = tax,
                 deductions_health = philhealth,
                 pag_ibig = pagibig,
                 sss = sss,
-                overtime = employeeguy.getOvertime,
+                overtime = curemplo_ot,
                 total_pay = totalpay
             )
 
-    return render(request, 'payroll_app/payslips.html', {'emp':employee_objects}, {'psl':payslipobjects})
+    return render(request, 'payroll_app/payslips.html', {'emp':employee_objects, "message":message, "psl":payslipobjects})

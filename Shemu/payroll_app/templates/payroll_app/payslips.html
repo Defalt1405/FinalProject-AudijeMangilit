@@ -7,6 +7,13 @@
     <!-- payroll header -->
     <h2 class="mb-4">Payroll Creation</h2>
 
+    <!-- Message -->
+    {% if message %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endif %}
+
     <!-- payroll form -->
     <div class="card p-4 shadow mb-4">
         <form method="POST" action="{% url 'payslips' %}">{% csrf_token %}
@@ -70,6 +77,7 @@
             </div>
                 
         </form>
+
     </div>
 
     <!-- divider -->
@@ -92,13 +100,15 @@
         <tbody>
             <!-- DATA GOES HERE -->
             {% for p in psl %}
-                <td>{{ p.id_number }}</td>
+            <tr>
+                <td>{{ p.id_number.id_number }}</td>
                 <td>{{ p.date_range }}</td>
                 <td>{{ p.pay_cycle }}</td>
                 <td>{{ p.total_pay }}</td>
                 <td>
                     <a class="btn btn-sm btn-warning w-50">View</a>
                 </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
