@@ -7,7 +7,7 @@ Current progress:
 5. Create employee page - done*  
 6. Update employee page - done*
 7. Payslips page - done*
-8. View payslips page - NOT DONE X
+8. View payslips page - page created, data displayable; layout incomplete
 
 *debugging needed
 
@@ -26,3 +26,4 @@ Notes:
 Notes from Hyde:
 - attempted to check payslips page after adding views functionality and payslips table data for payslips.html and it displayed the raw html despite saving the data? unsure how to debug this. (May 8, 8:35pm)
 - finally got payslips.html to work, but no views/functionality/template for view_payslips yet (May 8, 10:02pm)
+- payslips template (and its associated urls.py and views.py functionality) completed! view_payslip and data added as well. formatting is missing, though. (May 8, 10:49pm)

@@ -130,3 +130,7 @@ def payslips(request): # Hyde added "Payslip Creation Functionality" (end 8:29pm
             )
 
     return render(request, 'payroll_app/payslips.html', {'emp':employee_objects, "message":message, "psl":payslipobjects})
+
+def view_payslip(request, pk):
+    curpayslip = get_object_or_404(Payslip, pk=pk)
+    return render(request, "payroll_app/view_payslip.html", {"p":curpayslip})

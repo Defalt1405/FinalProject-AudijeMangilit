@@ -106,7 +106,7 @@
                 <td>{{ p.pay_cycle }}</td>
                 <td>{{ p.total_pay }}</td>
                 <td>
-                    <a class="btn btn-sm btn-warning w-50">View</a>
+                    <a href="{% url 'view_payslip' pk=p.pk %}" class="btn btn-sm btn-warning w-50">View</a>
                 </td>
             </tr>
             {% endfor %}

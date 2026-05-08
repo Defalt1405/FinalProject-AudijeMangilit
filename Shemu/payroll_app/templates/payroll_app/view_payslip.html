@@ -1,0 +1,28 @@
+{% extends 'payroll_app/base.html' %}
+
+{% block content %}
+
+<div>
+    <!-- header -->
+    <!-- earnings -->
+    <!-- deductions -->
+    <!-- net pay -->
+
+    <!-- temporary data display-->
+    {{ p.id_number.name }}
+    {{ p.month }}
+    {{ p.date_range }}
+    {{ p.id_number.id_number }}
+    {{ p.pk }}
+
+    {{ p.rate }}
+    {{ p.id_number.allowance }}
+    {{ p.id_number.overtime }}
+
+    {{ p.deductions_tax }}
+    {{ p.pag_ibig }}
+    {{ p.deductions_health }}
+    {{ p.sss }}
+</div>
+
+{% endblock %}

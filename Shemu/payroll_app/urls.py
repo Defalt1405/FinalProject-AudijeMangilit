@@ -27,5 +27,6 @@ urlpatterns = [
     path('add_overtime/<int:pk>/', views.add_overtime, name="add_overtime"),
 
     path('payslips', views.payslips, name="payslips"),
+    path("view_payslip/<int:pk>/", views.view_payslip, name="view_payslip")
 
     ]
