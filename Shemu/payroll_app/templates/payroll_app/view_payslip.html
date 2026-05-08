@@ -4,25 +4,27 @@
 
 <div>
     <!-- header -->
+    NAME: {{ p.id_number.name }}
+    DATE: {{ p.month }} {{ p.date_range }}, {{ p.year }}<br>
+    ID NUMBER: {{ p.id_number.id_number }}
+    PAYSLIP ID: {{ p.pk }}<br><br>
+
     <!-- earnings -->
+    Base Pay {{ p.rate }}<br>
+    Allowances {{ p.id_number.allowance }}<br>
+    Overtime {{ p.overtime }}<br>
+    GROSS PAY {{ grosspay }}<br><br>
+
     <!-- deductions -->
+    W/Holding Tax {{ p.deductions_tax }}<br>
+    Pag-Ibig {{ p.pag_ibig }}<br>
+    PhilHealth {{ p.deductions_health }}<br>
+    SSS {{ p.sss }}<br>
+    TOTAL DEDUCTIONS {{ totaldeduct }}<br><br>
+
     <!-- net pay -->
+    NET PAY: {{ p.total_pay }}
 
-    <!-- temporary data display-->
-    {{ p.id_number.name }}
-    {{ p.month }}
-    {{ p.date_range }}
-    {{ p.id_number.id_number }}
-    {{ p.pk }}
-
-    {{ p.rate }}
-    {{ p.id_number.allowance }}
-    {{ p.id_number.overtime }}
-
-    {{ p.deductions_tax }}
-    {{ p.pag_ibig }}
-    {{ p.deductions_health }}
-    {{ p.sss }}
 </div>
 
 {% endblock %}

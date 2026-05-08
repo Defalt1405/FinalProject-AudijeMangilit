@@ -55,7 +55,7 @@
                 <!-- year -->
                 <div class="col-md-4">
                     <label class="form-label">Year</label>
-                    <input type="text" class="form-control" name="year" placeholder="e.g. 2026">
+                    <input type="text" class="form-control" name="year" placeholder="e.g. 2026" type="number" min="0">
                 </div>
 
                 <!-- cycle -->
@@ -102,7 +102,7 @@
             {% for p in psl %}
             <tr>
                 <td>{{ p.id_number.id_number }}</td>
-                <td>{{ p.date_range }}</td>
+                <td>{{ p.month }} {{ p.date_range }}, {{ p.year }}</td>
                 <td>{{ p.pay_cycle }}</td>
                 <td>{{ p.total_pay }}</td>
                 <td>

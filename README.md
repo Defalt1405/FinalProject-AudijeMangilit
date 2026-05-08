@@ -27,3 +27,4 @@ Notes from Hyde:
 - attempted to check payslips page after adding views functionality and payslips table data for payslips.html and it displayed the raw html despite saving the data? unsure how to debug this. (May 8, 8:35pm)
 - finally got payslips.html to work, but no views/functionality/template for view_payslips yet (May 8, 10:02pm)
 - payslips template (and its associated urls.py and views.py functionality) completed! view_payslip and data added as well. formatting is missing, though. (May 8, 10:49pm)
+- view_payslip works except when trying to display the total deductions for absolutely no reason. can't figure it out (May 9, 12:29am)

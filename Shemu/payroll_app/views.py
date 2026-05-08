@@ -76,7 +76,7 @@ def delete_employee(request, pk):
     employee.delete()
     return redirect('employees')
 
-def payslips(request): # Hyde added "Payslip Creation Functionality" (end 8:29pm)
+def payslips(request): # Hyde added "Payslip Creation Functionality"
     employee_objects = Employee.objects.all()
     message = None
     payslipobjects = Payslip.objects.all()
@@ -106,8 +106,15 @@ def payslips(request): # Hyde added "Payslip Creation Functionality" (end 8:29pm
             # cycle calculation
             priorcycle = (curemplo_rate/2) + curemplo_allow + curemplo_ot
             if cycle == "1":
+                curdaterange = "1-15"
                 taxcalc1 = (priorcycle - pagibig)
             elif cycle == "2":
+                if month == "February":
+                    curdaterange = "16-28"
+                elif month == "April" or month == "June" or month == "September" or month == "November":
+                    curdaterange = "16-30"
+                else:
+                    curdaterange = "16-31"
                 taxcalc1 = (priorcycle - philhealth - sss)
             tax = taxcalc1 * 0.2
             totalpay = taxcalc1 - tax
@@ -116,7 +123,7 @@ def payslips(request): # Hyde added "Payslip Creation Functionality" (end 8:29pm
             Payslip.objects.create(
                 id_number = employeeguy,
                 month = month,
-                date_range = "temp. value",
+                date_range = curdaterange,
                 year = year,
                 pay_cycle = cycle,
                 rate = curemplo_rate,
@@ -129,8 +136,18 @@ def payslips(request): # Hyde added "Payslip Creation Functionality" (end 8:29pm
                 total_pay = totalpay
             )
 
+            Employee.objects.filter(pk=emplocheck).update(overtime_pay="0")
+
     return render(request, 'payroll_app/payslips.html', {'emp':employee_objects, "message":message, "psl":payslipobjects})
 
-def view_payslip(request, pk):
+def view_payslip(request, pk): # created by Hyde
     curpayslip = get_object_or_404(Payslip, pk=pk)
-    return render(request, "payroll_app/view_payslip.html", {"p":curpayslip})
+
+    grosspay = curpayslip.getRate() + curpayslip.getEarnings_allowance() + curpayslip.getOvertime()
+    
+    if curpayslip.getPay_cycle() == "1":
+        totaldeduct = curpayslip.getDeductions_tax() + curpayslip.getPag_ibig()
+    elif curpayslip.getPay_cycle() == "2":
+        totaldeduct = curpayslip.getDeductions_tax() + curpayslip.getDeductions_health() + curpayslip.getSSS()
+
+    return render(request, "payroll_app/view_payslip.html", {"p":curpayslip, "grosspay":grosspay, "totaldeduct":totaldeduct})
