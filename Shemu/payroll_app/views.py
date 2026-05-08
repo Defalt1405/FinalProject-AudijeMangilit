@@ -76,6 +76,51 @@ def delete_employee(request, pk):
     employee.delete()
     return redirect('employees')
 
-def payslips(request):
+def payslips(request): # Hyde added "Payslip Creation Functionality" (end 8:29pm)
     employee_objects = Employee.objects.all()
-    return render(request, 'payroll_app/payslips.html', {'emp':employee_objects})
+    payslipobjects = Payslip.objects.all()
+
+    if request.method == "POST":
+
+        emplocheck = request.POST.get("payroll_for")
+        if emplocheck == "All Employees":
+            message = "Can only create payslips per employee. Select an ID number and try again."
+        else:
+            # information from POST method
+            employeeguy = emplocheck
+            month = request.POST.get("month")
+            year = request.POST.get("year")
+            cycle = request.POST.get("cycle")
+
+            # other
+            pagibig = 100
+            philhealth = employeeguy.getRate * 0.04
+            sss = employeeguy.getRate * 0.045
+
+            # cycle calculation
+            priorcycle = (employeeguy.getRate/2) + employeeguy.getAllowance + employeeguy.getOvertime
+            if cycle == "1":
+                taxcalc1 = (priorcycle - pagibig)
+            elif cycle == "2":
+                taxcalc1 = (priorcycle - philhealth - sss)
+            tax = taxcalc1 * 0.2
+            totalpay = taxcalc1 - tax
+
+            # create payslip object with the above information
+            Payslip.objects.create(
+                id_number = employeeguy,
+                month = month,
+                date_range = "temp. value",
+                year = year,
+                pay_cycle = cycle,
+                rate = employeeguy.getRate,
+                earnings_allowance = employeeguy.getAllowance,
+                deductions_tax = tax,
+                deductions_health = philhealth,
+                pag_ibig = pagibig,
+                sss = sss,
+                overtime = employeeguy.getOvertime,
+                total_pay = totalpay
+            )
+
+    return render(request, 'payroll_app/payslips.html', {'emp':employee_objects}, {'psl':payslipobjects})

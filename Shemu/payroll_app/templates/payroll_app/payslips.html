@@ -68,7 +68,7 @@
                     Submit
                 </button>
             </div>
-
+                
         </form>
     </div>
 
@@ -91,6 +91,15 @@
         </thead>
         <tbody>
             <!-- DATA GOES HERE -->
+            {% for p in psl %}
+                <td>{{ p.id_number }}</td>
+                <td>{{ p.date_range }}</td>
+                <td>{{ p.pay_cycle }}</td>
+                <td>{{ p.total_pay }}</td>
+                <td>
+                    <a class="btn btn-sm btn-warning w-50">View</a>
+                </td>
+            {% endfor %}
         </tbody>
     </table>
 

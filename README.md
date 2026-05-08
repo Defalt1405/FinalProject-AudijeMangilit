@@ -6,7 +6,7 @@ Current progress:
 4. Employee page - done*
 5. Create employee page - done*  
 6. Update employee page - done*
-7. Payslips page - Partially done; frontend mostly added(add table data), need to add functionality for payslip creation
+7. Payslips page - Partially done; frontend mostly added(add table data), functionality for payslip creation added*
 8. View payslips page - NOT DONE X
 
 *debugging needed
@@ -22,3 +22,6 @@ Notes:
 - Make sure the columns have a maximum decimal display (ex.: overtime can sometimes display like 7 decimal places, limit to 1 or 2), so it looks better
 - Most of the views and urls will need to be edited slightly for when login functionality is created
 - potential idea for login: create a separate admin model, use a global variable for redirecting the user
+
+Notes from Hyde:
+- attempted to check payslips page after adding views functionality and payslips table data for payslips.html and it displayed the raw html despite saving the data? unsure how to debug this. (May 8, 8:35)
