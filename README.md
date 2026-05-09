@@ -26,4 +26,5 @@ Notes from Hyde:
 - view_payslip works except when trying to display the total deductions for absolutely no reason. can't figure it out (May 9, 12:29am)
 - functionality for payslips.html and view_payslip.html completed, but not debugged yet. (May 9, 12:43am) 
 - after Basti debugged, haven't touched anything else yet. payslips information isn't lining up... (May 9, 2:38)
-- fixed payslip net totals not matching (May 9, 3:01pm)
+- fixed payslip net totals not matching between payslips.html and view_payslip.html (May 9, 3:01pm)
+- fixed full rate displaying instead of cycle rate in view_payslip.html (May 9, 3:26pm)

@@ -282,14 +282,14 @@ def create_payslip(emp, month, year, cycle): #sub-function for payslips(); for o
         date_range = "1-15"
         taxable = base - pagibig
         tax = taxable * 0.2
-        total = taxable - tax
 
     #CYCLE 2
     else:
         date_range = "16-30"
         taxable = base - philhealth - sss
         tax = taxable * 0.2
-        total = taxable - tax
+    
+    total = max((taxable - tax), 0)
 
     Payslip.objects.create(
         id_number=emp,
@@ -336,6 +336,6 @@ def view_payslip(request, pk): # created by Hyde
         totaldeduct = (curpayslip.deductions_tax +curpayslip.deductions_health +curpayslip.sss)
 
     #net pay
-    netpay = grosspay - totaldeduct
+    netpay = max((grosspay - totaldeduct), 0)
 
     return render(request, "payroll_app/view_payslip.html", {"p": curpayslip,"grosspay": grosspay,"totaldeduct": totaldeduct,"netpay": netpay})
