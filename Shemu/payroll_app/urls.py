@@ -18,7 +18,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.employees, name='employees'),
+    path('', views.employee_login, name="employee_login"),
 
     path('employees/', views.employees, name='employees'),
     path('create_employee/', views.create_employee, name="create_employee"),
@@ -27,6 +27,11 @@ urlpatterns = [
     path('add_overtime/<int:pk>/', views.add_overtime, name="add_overtime"),
 
     path('payslips', views.payslips, name="payslips"),
-    path("view_payslip/<int:pk>/", views.view_payslip, name="view_payslip")
+    path("view_payslip/<int:pk>/", views.view_payslip, name="view_payslip"),
+
+    path("employee_login/", views.employee_login, name="employee_login"),
+    path("admin_login/", views.admin_login, name="admin_login"),
+    path("create_admin/", views.create_admin, name="create_admin"),
+    path("logout/", views.logout, name="logout"),
 
     ]

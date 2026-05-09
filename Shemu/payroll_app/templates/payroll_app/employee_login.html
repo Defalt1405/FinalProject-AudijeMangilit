@@ -1,0 +1,63 @@
+{% extends 'payroll_app/base.html' %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center"
+     style="min-height: 70vh;">
+
+    <div class="card p-4 shadow" style="width: 400px;">
+
+        <!-- Header -->
+        <h2 class="text-center mb-4">Employee Login</h2>
+
+        <!-- Error Message -->
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <!-- Login Form -->
+        <form method="POST" action="{% url 'employee_login' %}">
+            {% csrf_token %}
+
+            <!-- Employee ID -->
+            <div class="mb-3">
+                <label class="form-label">Employee ID</label>
+                <input type="text"
+                       name="id_number"
+                       class="form-control"
+                       required>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password"
+                       name="password"
+                       class="form-control"
+                       required>
+            </div>
+
+            <!-- Login Button -->
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-primary">
+                    Login
+                </button>
+            </div>
+
+        </form>
+
+        <!-- Admin Login Redirect -->
+        <div class="d-grid">
+            <a href="{% url 'admin_login' %}"
+               class="btn btn-dark">
+                Login as Admin
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

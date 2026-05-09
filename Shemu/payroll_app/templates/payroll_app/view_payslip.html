@@ -1,29 +1,143 @@
 {% extends 'payroll_app/base.html' %}
 
+{% block header %}
+<nav>
+    <a href="{% url 'payslips' %}">Payslips</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</nav>
+{% endblock %}
+
+
 {% block content %}
 
-<div>
-    <!-- header -->
-    NAME: {{ p.id_number.name }}
-    DATE: {{ p.month }} {{ p.date_range }}, {{ p.year }}<br>
-    ID NUMBER: {{ p.id_number.id_number }}
-    PAYSLIP ID: {{ p.pk }}<br><br>
+<div class="container mt-4">
 
-    <!-- earnings -->
-    Base Pay {{ p.rate }}<br>
-    Allowances {{ p.id_number.allowance }}<br>
-    Overtime {{ p.overtime }}<br>
-    GROSS PAY {{ grosspay }}<br><br>
+    <!--  GENERAL DETAILS -->
+    <h3 class="mb-3">General Payslip Details</h3>
 
-    <!-- deductions -->
-    W/Holding Tax {{ p.deductions_tax }}<br>
-    Pag-Ibig {{ p.pag_ibig }}<br>
-    PhilHealth {{ p.deductions_health }}<br>
-    SSS {{ p.sss }}<br>
-    TOTAL DEDUCTIONS {{ totaldeduct }}<br><br>
+    <table class="table table-bordered" style="table-layout: fixed; width: 100%;">
 
-    <!-- net pay -->
-    NET PAY: {{ p.total_pay }}
+        <colgroup>
+            <col style="width: 40%;">
+            <col style="width: 60%;">
+        </colgroup>
+
+        <tr>
+            <th>Name</th>
+            <td>{{ p.id_number.name }}</td>
+        </tr>
+
+        <tr>
+            <th>ID Number</th>
+            <td>{{ p.id_number.id_number }}</td>
+        </tr>
+
+        <tr>
+            <th>Date</th>
+            <td>{{ p.month }} {{ p.date_range }}, {{ p.year }}</td>
+        </tr>
+
+        <tr>
+            <th>Payslip ID</th>
+            <td>{{ p.pk }}</td>
+        </tr>
+
+    </table>
+
+
+    <!-- EARNINGS -->
+    <h3 class="mb-3 mt-4">Earnings</h3>
+
+    <table class="table table-bordered" style="table-layout: fixed; width: 100%;">
+
+        <colgroup>
+            <col style="width: 40%;">
+            <col style="width: 60%;">
+        </colgroup>
+
+        <tr>
+            <th>Base Pay</th>
+            <td>{{ p.rate|floatformat:2 }}</td>
+        </tr>
+
+        <tr>
+            <th>Allowance</th>
+            <td>{{ p.earnings_allowance|floatformat:2 }}</td>
+        </tr>
+
+        <tr>
+            <th>Overtime</th>
+            <td>{{ p.overtime|floatformat:2 }}</td>
+        </tr>
+
+        <tr>
+            <th>Gross Pay</th>
+            <td><strong>{{ grosspay|floatformat:2 }}</strong></td>
+        </tr>
+
+    </table>
+
+
+    <!--  DEDUCTIONS -->
+    <h3 class="mb-3 mt-4">Deductions</h3>
+
+    <table class="table table-bordered" style="table-layout: fixed; width: 100%;">
+
+        <colgroup>
+            <col style="width: 40%;">
+            <col style="width: 60%;">
+        </colgroup>
+
+        <tr>
+            <th>Withholding Tax</th>
+            <td>{{ p.deductions_tax|floatformat:2 }}</td>
+        </tr>
+
+        <!-- Cycle 1 -->
+        {% if p.pay_cycle == 1 %}
+        <tr>
+            <th>Pag-IBIG</th>
+            <td>{{ p.pag_ibig|floatformat:2 }}</td>
+        </tr>
+        {% endif %}
+
+        <!-- Cycle 2 -->
+        {% if p.pay_cycle == 2 %}
+        <tr>
+            <th>PhilHealth</th>
+            <td>{{ p.deductions_health|floatformat:2 }}</td>
+        </tr>
+
+        <tr>
+            <th>SSS</th>
+            <td>{{ p.sss|floatformat:2 }}</td>
+        </tr>
+        {% endif %}
+
+        <tr>
+            <th>Total Deductions</th>
+            <td><strong>{{ totaldeduct|floatformat:2 }}</strong></td>
+        </tr>
+
+    </table>
+
+
+    <!--  NET PAY -->
+    <h3 class="mb-3 mt-4">Net Pay</h3>
+
+    <table class="table table-bordered" style="table-layout: fixed; width: 100%;">
+
+        <colgroup>
+            <col style="width: 40%;">
+            <col style="width: 60%;">
+        </colgroup>
+
+        <tr>
+            <th>Net Pay</th>
+            <td><strong>{{ netpay|floatformat:2 }}</strong></td>
+        </tr>
+
+    </table>
 
 </div>
 

@@ -1,5 +1,13 @@
 {% extends 'payroll_app/base.html' %}
 
+{% block header %}
+<nav>
+    <a href="{% url 'employees' %}">Employees</a>
+    <a href="{% url 'payslips' %}">Payslips</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</nav>
+{% endblock %}
+
 {% block content %}
 
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
@@ -21,23 +29,28 @@
 
             <!-- Name -->
              <div class="mb-3">
-                <label class="form-label">Name</label>
-                <input type="text" name="name" class="form-control" required>
+                <label class="form-label">Name (Letters Only)</label>
+                <input type="text" name="name" class="form-control" maxlength="20" pattern="[A-Za-z\s]+" required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">ID Number</label>
-                <input type="text" name="id_number" class="form-control" required>
+                <label class="form-label">ID Number (6 digits)</label>
+                <input type="text" name="id_number" class="form-control" pattern="\d{6}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" maxlength="20" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Rate</label>
-                <input type="number" step="0.01" name="rate" class="form-control" required>
+                <input type="number" step="0.01" name="rate" class="form-control" min="0" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Allowance (Optional)</label>
-                <input type="number" step="0.01" name="allowance" class="form-control">
+                <input type="number" step="0.01" name="allowance" class="form-control" min="0">
             </div>
 
             <div class="d-grid">

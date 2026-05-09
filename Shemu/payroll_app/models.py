@@ -6,6 +6,7 @@ class Employee(models.Model):
     rate = models.FloatField()
     overtime_pay = models.FloatField(null=True)
     allowance = models.FloatField(null=True)
+    password = models.CharField(max_length=50)
 
     def getName(self):
         return self.name
@@ -94,3 +95,10 @@ class Payslip(models.Model):
             f"Cycle: {self.pay_cycle}, "
             f"Total Pay: {self.total_pay}"
         )
+
+class Admin(models.Model):
+    username = models.CharField(max_length=50, unique=True)
+    password = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.username

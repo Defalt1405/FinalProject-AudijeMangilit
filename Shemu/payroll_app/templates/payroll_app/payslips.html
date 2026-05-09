@@ -1,5 +1,15 @@
 {% extends 'payroll_app/base.html' %}
 
+{% block header %}
+<nav>
+    {% if is_admin %}
+        <a href="{% url 'employees' %}">Employees</a>
+    {% endif %}
+    <a href="{% url 'payslips' %}">Payslips</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</nav>
+{% endblock %}
+
 {% block content %}
 
 <div class="container mt-4">
@@ -55,7 +65,7 @@
                 <!-- year -->
                 <div class="col-md-4">
                     <label class="form-label">Year</label>
-                    <input type="text" class="form-control" name="year" placeholder="e.g. 2026" type="number" min="0">
+                    <input class="form-control" name="year" placeholder="e.g. 2026" type="number" min="2000" max="2050" required>
                 </div>
 
                 <!-- cycle -->
@@ -104,7 +114,7 @@
                 <td>{{ p.id_number.id_number }}</td>
                 <td>{{ p.month }} {{ p.date_range }}, {{ p.year }}</td>
                 <td>{{ p.pay_cycle }}</td>
-                <td>{{ p.total_pay }}</td>
+                <td>{{ p.total_pay|floatformat:2 }}</td>
                 <td>
                     <a href="{% url 'view_payslip' pk=p.pk %}" class="btn btn-sm btn-warning w-50">View</a>
                 </td>

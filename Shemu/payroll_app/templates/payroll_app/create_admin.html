@@ -1,0 +1,79 @@
+{% extends 'payroll_app/base.html' %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center"
+     style="min-height: 70vh;">
+
+    <div class="card p-4 shadow" style="width: 400px;">
+
+        <!-- Header -->
+        <h2 class="text-center mb-4">Create Admin Account</h2>
+
+        <!-- Error Message -->
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <!-- Success Message -->
+        {% if success %}
+            <div class="alert alert-success">
+                {{ success }}
+            </div>
+        {% endif %}
+
+        <!-- Create Admin Form -->
+        <form method="POST" action="{% url 'create_admin' %}">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       required>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password"
+                       name="password"
+                       class="form-control"
+                       required>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-3">
+                <label class="form-label">Confirm Password</label>
+                <input type="password"
+                       name="confirm_password"
+                       class="form-control"
+                       required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-success">
+                    Create Admin Account
+                </button>
+            </div>
+
+        </form>
+
+        <!-- Back to Admin Login -->
+        <div class="d-grid">
+            <a href="{% url 'admin_login' %}"
+               class="btn btn-secondary">
+                Back to Admin Login
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

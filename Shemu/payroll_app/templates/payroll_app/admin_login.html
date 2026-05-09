@@ -1,0 +1,71 @@
+{% extends 'payroll_app/base.html' %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center"
+     style="min-height: 70vh;">
+
+    <div class="card p-4 shadow" style="width: 400px;">
+
+        <!-- Header -->
+        <h2 class="text-center mb-4">Admin Login</h2>
+
+        <!-- Error Message -->
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <!-- Login Form -->
+        <form method="POST" action="{% url 'admin_login' %}">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       required>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password"
+                       name="password"
+                       class="form-control"
+                       required>
+            </div>
+
+            <!-- Login Button -->
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-primary">
+                    Login
+                </button>
+            </div>
+
+        </form>
+
+        <!-- Employee Login Redirect -->
+        <div class="d-grid mb-2">
+            <a href="{% url 'employee_login' %}"
+               class="btn btn-secondary">
+                Login as Employee
+            </a>
+        </div>
+
+        <!-- Create Admin Account Redirect -->
+        <div class="d-grid">
+            <a href="{% url 'create_admin' %}"
+               class="btn btn-dark">
+                Create Admin Account
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
