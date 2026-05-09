@@ -25,3 +25,5 @@ Notes from Hyde:
 - payslips template (and its associated urls.py and views.py functionality) completed! view_payslip and data added as well. formatting is missing, though. (May 8, 10:49pm)
 - view_payslip works except when trying to display the total deductions for absolutely no reason. can't figure it out (May 9, 12:29am)
 - functionality for payslips.html and view_payslip.html completed, but not debugged yet. (May 9, 12:43am) 
+- after Basti debugged, haven't touched anything else yet. payslips information isn't lining up... (May 9, 2:38)
+- fixed payslip net totals not matching (May 9, 3:01pm)

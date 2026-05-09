@@ -326,7 +326,7 @@ def view_payslip(request, pk): # created by Hyde
             return redirect('payslips')
 
     #gross pay
-    grosspay = (curpayslip.rate + curpayslip.earnings_allowance + curpayslip.overtime)
+    grosspay = ((curpayslip.rate /2) + curpayslip.earnings_allowance + curpayslip.overtime)
 
     #deductions (cycle-based)
     if curpayslip.pay_cycle == 1:
