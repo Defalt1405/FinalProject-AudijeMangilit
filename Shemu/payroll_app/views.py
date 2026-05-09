@@ -316,24 +316,6 @@ def view_payslip(request, pk): # created by Hyde
 
     if logged_in_id == 0:
         return redirect('employee_login')
-    
-    curpayslip = get_object_or_404(Payslip, pk=pk)
-
-    if True:
-        grosspay = curpayslip.getRate() + curpayslip.getEarnings_allowance() + curpayslip.getOvertime()
-    
-    if curpayslip.getPay_cycle() == 1:
-        totaldeduct = curpayslip.getDeductions_tax() + curpayslip.getPag_ibig()
-    elif curpayslip.getPay_cycle() == 2:
-        totaldeduct = curpayslip.getDeductions_tax() + curpayslip.getDeductions_health() + curpayslip.getSSS()
-
-    return render(request, "payroll_app/view_payslip.html", {"p":curpayslip, "grosspay":grosspay, "totaldeduct":totaldeduct})
-
-def view_payslip(request, pk):
-    global logged_in_id, is_admin
-
-    if logged_in_id == 0:
-        return redirect('employee_login')
 
     curpayslip = get_object_or_404(Payslip, pk=pk)
 
