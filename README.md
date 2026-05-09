@@ -17,6 +17,7 @@ Login specs:
 
 Notes:
 - final working version uploaded, final bug check needed then we done
+- I also edited the payslip view to have a subfunction, for organization
 
 Notes from Hyde:
 - attempted to check payslips page after adding views functionality and payslips table data for payslips.html and it displayed the raw html despite saving the data? unsure how to debug this. (May 8, 8:35pm)
